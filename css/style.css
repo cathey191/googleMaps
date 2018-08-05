@@ -1,0 +1,16 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #778ca3;
+}
+
+#map {
+	width: 90vw;
+	height: 100vh;
+	margin: 0 auto;
+	background-color: #4b6584;
+}

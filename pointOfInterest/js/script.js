@@ -1,13 +1,14 @@
 google.maps.event.addDomListener(window, 'load', initMap);
 var map;
+var infoBox;
 
 function initMap() {
 	var mapOptions = {
 		center: {
-			lat: -41.2865,
-			lng: 174.7762
+			lat: -41.2765,
+			lng: 174.8262
 		},
-		zoom: 13,
+		zoom: 12,
 		disableDefaultUI: true,
 		mapTypeControl: true,
 		mapTypeControlOptions: {
@@ -111,8 +112,45 @@ function addMarkers() {
 					},
 					title: markers[i].place_name,
 					map: map,
-					icon: icons[markers[i].stock].icon
+					icon: icons[markers[i].stock].icon,
+					animation: google.maps.Animation.DROP
 				});
+
+				markerClickEvent(marker);
+			}
+			$('#places')[0].addEventListener('click', moveMap, false);
+		},
+		error: function(error) {
+			console.log('Error, something went wrong getting markers');
+			console.log(error);
+		}
+	});
+}
+
+function markerClickEvent(marker) {
+	if (infoBox) {
+		infoBox.close();
+	}
+
+	infoBox = new google.maps.InfoWindow();
+	google.maps.event.addListener(marker, 'click', function() {
+		infoBox.setContent('<div><strong>' + marker.title + '</strong></div>');
+		infoBox.open(map, marker);
+	});
+}
+
+function moveMap(e) {
+	$.ajax({
+		url: 'data/markers.json',
+		type: 'GET',
+		dataType: 'json',
+		success: function(markers) {
+			for (var i = 0; i < markers.length; i++) {
+				if (markers[i].place_name === e.target.innerHTML) {
+					var latlng = new google.maps.LatLng(markers[i].lat, markers[i].long);
+					map.panTo(latlng);
+					map.setZoom(15);
+				}
 			}
 		},
 		error: function(error) {

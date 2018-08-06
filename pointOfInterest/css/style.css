@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #b2bec3;
+}
+
+h1 {
+	text-align: center;
+	padding: 10px;
+	color: #2d3436;
+}
+
+.content {
+	display: flex;
+}
+
+#map {
+	width: 70vw;
+	height: 80vh;
+	background-color: #f0f0f0;
+	margin: 0px 5px 0px 10px;
+}
+
+#places {
+	width: 30vw;
+	height: 80vh;
+	background-color: #dfe6e9;
+	margin: 0px 10px 0px 5px;
+}

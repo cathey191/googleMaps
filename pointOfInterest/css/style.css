@@ -34,6 +34,11 @@ h1 {
 }
 
 .place {
-	margin: 5px 10px 5px 10px;
+	padding: 5px 10px 5px 10px;
 	color: #2d3436;
+}
+
+.place:hover {
+	color: #dfe6e9;
+	background-color: #2d3436;
 }

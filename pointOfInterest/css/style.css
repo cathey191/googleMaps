@@ -21,7 +21,7 @@ h1 {
 #map {
 	width: 70vw;
 	height: 80vh;
-	background-color: #f0f0f0;
+	background-color: #dfe6e9;
 	margin: 0px 5px 0px 10px;
 }
 
@@ -30,4 +30,9 @@ h1 {
 	height: 80vh;
 	background-color: #dfe6e9;
 	margin: 0px 10px 0px 5px;
+}
+
+.place {
+	margin: 5px 10px 5px 10px;
+	color: #2d3436;
 }

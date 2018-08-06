@@ -1,10 +1,11 @@
 google.maps.event.addDomListener(window, 'load', initMap);
+var map;
 
 function initMap() {
 	var mapOptions = {
 		center: {
-			lat: -41.279214,
-			lng: 174.78034
+			lat: -41.2865,
+			lng: 174.7762
 		},
 		zoom: 13,
 		disableDefaultUI: true,
@@ -78,5 +79,45 @@ function initMap() {
 		]
 	};
 
-	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+	addMarkers();
+}
+
+function addMarkers() {
+	var icons = {
+		knitting: {
+			icon: 'icons/knitting.png'
+		},
+		sewing: {
+			icon: 'icons/pincushion.png'
+		}
+	};
+
+	$.ajax({
+		url: 'data/markers.json',
+		type: 'GET',
+		dataType: 'json',
+		success: function(markers) {
+			for (var i = 0; i < markers.length; i++) {
+				$('#places').append(
+					'<div class="place"><h3>' + markers[i].place_name + '</h3></div><hr>'
+				);
+
+				var marker = new google.maps.Marker({
+					position: {
+						lat: markers[i].lat,
+						lng: markers[i].long
+					},
+					title: markers[i].place_name,
+					map: map,
+					icon: icons[markers[i].stock].icon
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error, something went wrong getting markers');
+			console.log(error);
+		}
+	});
 }

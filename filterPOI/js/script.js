@@ -2,6 +2,8 @@ $(document).ready(function() {
 	var map;
 	var markersArray = [];
 	var infoBox;
+	document.querySelector('#submit').addEventListener('click', filter, false);
+
 	$.ajax({
 		url: 'config.json',
 		dataType: 'json',
@@ -54,7 +56,8 @@ $(document).ready(function() {
 					listPlaces(data[i]);
 				}
 
-				$('#places')[0].addEventListener('click', placeListner, false);
+				document.querySelector('#places');
+				addEventListener('click', placeListner, false);
 			},
 			error: function(error) {
 				console.log('Error');
@@ -126,6 +129,11 @@ $(document).ready(function() {
 				map.setZoom(15);
 			}
 		}
+	}
+
+	function filter(e) {
+		event.preventDefault();
+		console.dir(e.target);
 	}
 
 	// close of doc

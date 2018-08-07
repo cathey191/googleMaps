@@ -11,7 +11,14 @@
 
 		<div class="content">
 			<div class="results">
-				<div class="filters" id="filters"></div>
+				<form class="filters" method="post" id="filters">
+					<label for="type"></label>
+					<input type="checkbox" name="type" value="male"> Animal<br>
+					<input type="checkbox" name="type" value="female"> Beach<br>
+					<input type="checkbox" name="type" value="other"> Movies<br>
+					<input type="checkbox" name="type" value="other"> Walks<br>
+					<input type="submit" value="Submit" id="submit"> 
+				</form>
 				<div class="places" id="places"></div>
 			</div>
 			<div class="map" id="map"></div>

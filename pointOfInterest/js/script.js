@@ -103,7 +103,11 @@ function addMarkers() {
 		success: function(markers) {
 			for (var i = 0; i < markers.length; i++) {
 				$('#places').append(
-					'<div class="place"><h3>' + markers[i].place_name + '</h3></div><hr>'
+					'<div class="place"><h3>' +
+						markers[i].place_name +
+						'</h3><p>Ph: ' +
+						markers[i].phone_number +
+						'</p></div><hr>'
 				);
 
 				var marker = new google.maps.Marker({

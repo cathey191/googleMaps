@@ -4,69 +4,79 @@
 		"place_name": "Busy Bee Quilt Shop",
 		"lat": -41.324991,
 		"long": 174.801944,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 387 7115"
 	},
 	{
 		"id": 2,
 		"place_name": "The Fabric Shore",
 		"lat": -41.29359,
 		"long": 174.774504,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 801 8887"
 	},
 	{
 		"id": 3,
 		"place_name": "Fabrics Direct",
 		"lat": -41.2927,
 		"long": 174.773488,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 385 6767"
 	},
 	{
 		"id": 4,
 		"place_name": "Holland Road Yarn Company",
 		"lat": -41.286756,
 		"long": 174.775872,
-		"stock": "knitting"
+		"stock": "knitting",
+		"phone_number": "(04) 499 6845"
 	},
 	{
 		"id": 5,
 		"place_name": "Made Marion Craft",
 		"lat": -41.295659,
 		"long": 174.779736,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 801 5850"
 	},
 	{
 		"id": 6,
 		"place_name": "Minerva",
 		"lat": -41.29569,
 		"long": 174.774525,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 934 3424"
 	},
 	{
 		"id": 7,
 		"place_name": "Nancy's Stitch Studio",
 		"lat": -41.269583,
 		"long": 174.780802,
-		"stock": "knitting"
+		"stock": "knitting",
+		"phone_number": "(04) 473 4047"
 	},
 	{
 		"id": 8,
 		"place_name": "The Sewing Depot",
 		"lat": -41.226024,
 		"long": 174.881796,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 589 6933"
 	},
 	{
 		"id": 9,
 		"place_name": "Stitchbird Fabrics",
 		"lat": -41.317795,
 		"long": 174.794084,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 387 1055"
 	},
 	{
 		"id": 10,
 		"place_name": "Wellington Sewing Centre",
 		"lat": -41.318251,
 		"long": 174.794439,
-		"stock": "sewing"
+		"stock": "sewing",
+		"phone_number": "(04) 387 4505"
 	}
 ]

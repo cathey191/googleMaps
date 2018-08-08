@@ -11,9 +11,15 @@
 
 		<div class="content">
 			<div class="results">
-				<div class="filters" id="filters">
-					<button type="button" name="button" id="findMe">Get My Position</button>
-				</div>
+				<form method="post" class="filters"  id="filters">
+					<label for="start">Start</label><br>
+					<input type="input" name="start"><br>
+					<label for="waypoints">Way Point</label><br>
+					<input type="input" name="waypoints"><br>
+					<label for="end">End</label><br>
+					<input type="input" name="end"><br><br>
+					<input type="submit" value="Submit" id="submit">
+				</form></form>
 				<div class="directions" id="directions"></div>
 			</div>
 			<div class="map" id="map"></div>

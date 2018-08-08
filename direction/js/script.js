@@ -2,7 +2,9 @@ $(document).ready(function() {
 	var map;
 	var directionDisplay;
 	var directionService;
-	document.querySelector('#findMe').addEventListener('click', findMe, false);
+	document
+		.querySelector('#submit')
+		.addEventListener('click', findLocations, false);
 
 	$.ajax({
 		url: 'config.json',
@@ -33,25 +35,25 @@ $(document).ready(function() {
 		});
 	}
 
-	function getLocations() {
-		$.ajax({
-			url: 'data/locations.json',
-			dataType: 'json',
-			type: 'GET',
-			success: function(data) {
-				calcRoute(data);
-			},
-			error: function(error) {
-				console.log('Error');
-				console.log(error);
-			}
-		});
-	}
+	// function getLocations() {
+	// 	$.ajax({
+	// 		url: 'data/locations.json',
+	// 		dataType: 'json',
+	// 		type: 'GET',
+	// 		success: function(data) {
+	// 			calcRoute(data);
+	// 		},
+	// 		error: function(error) {
+	// 			console.log('Error');
+	// 			console.log(error);
+	// 		}
+	// 	});
+	// }
 
 	function initMap() {
 		directionDisplay = new google.maps.DirectionsRenderer();
 
-		var wellington = new google.maps.LatLng(48.856614, 2.352222);
+		var wellington = new google.maps.LatLng(-41.28646, 174.776236);
 
 		var myOptions = {
 			zoom: 6,
@@ -62,36 +64,49 @@ $(document).ready(function() {
 		map = new google.maps.Map(document.getElementById('map'), myOptions);
 
 		directionDisplay.setMap(map);
-		getLocations();
+		// getLocations();
 	}
 
-	function calcRoute(data) {
-		var locations = data;
-		var waypts = [];
+	// function calcRoute(data) {
+	// 	var locations = data;
+	// 	var waypts = [];
+	//
+	// 	stop = new google.maps.LatLng(locations[2].lat, locations[2].long);
+	// 	waypts.push({
+	// 		location: stop,
+	// 		stopover: true
+	// 	});
+	//
+	// 	start = new google.maps.LatLng(locations[1].lat, locations[1].long);
+	// 	end = new google.maps.LatLng(locations[0].lat, locations[0].long);
+	//
+	// 	var request = {
+	// 		origin: start,
+	// 		destination: end,
+	// 		waypoints: waypts,
+	// 		optimizeWaypoints: true,
+	// 		travelMode: google.maps.DirectionsTravelMode.DRIVING
+	// 	};
+	//
+	// 	directionService.route(request, function(response, status) {
+	// 		if (status == google.maps.DirectionsStatus.OK) {
+	// 			directionDisplay.setDirections(response);
+	// 			var route = response.routes[0];
+	// 		}
+	// 	});
+	// }
 
-		stop = new google.maps.LatLng(locations[2].lat, locations[2].long);
-		waypts.push({
-			location: stop,
-			stopover: true
-		});
+	function findLocations(e) {
+		event.preventDefault();
+		var inputData = $('form').serializeArray();
 
-		start = new google.maps.LatLng(locations[1].lat, locations[1].long);
-		end = new google.maps.LatLng(locations[0].lat, locations[0].long);
+		var start = inputData[0].value;
+		var waypoint = inputData[1].value;
+		var end = inputData[2].value;
 
-		var request = {
-			origin: start,
-			destination: end,
-			waypoints: waypts,
-			optimizeWaypoints: true,
-			travelMode: google.maps.DirectionsTravelMode.DRIVING
-		};
+		console.log(start.coords.latitude());
 
-		directionService.route(request, function(response, status) {
-			if (status == google.maps.DirectionsStatus.OK) {
-				directionDisplay.setDirections(response);
-				var route = response.routes[0];
-			}
-		});
+		// position.coords.latitude()
 	}
 
 	// close of doc

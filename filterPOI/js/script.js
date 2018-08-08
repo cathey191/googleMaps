@@ -19,8 +19,7 @@ $(document).ready(function() {
 
 	function getMap(key) {
 		$.ajax({
-			url:
-				'https://maps.googleapis.com/maps/api/js?key=AIzaSyDT99gEi6xQmHKc62NlhC1lq2rOfpIwAVQ',
+			url: 'https://maps.googleapis.com/maps/api/js?key=' + key,
 			dataType: 'jsonp',
 			type: 'GET',
 			success: function() {

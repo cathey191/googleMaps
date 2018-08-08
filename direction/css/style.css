@@ -14,6 +14,16 @@ h1 {
 	text-align: center;
 }
 
+button {
+	margin: 0 auto;
+	padding: 0em 0.5em 0em 0.5em;
+	border-radius: 5px;
+	height: 3em;
+	font-size: 1.5em;
+	align-self: center;
+	background-color: #82ccdd;
+}
+
 hr {
 	display: block;
 	height: 2px;
@@ -47,14 +57,17 @@ hr {
 	height: 20%;
 	margin: 10px 0px 0px 10px;
 	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 
-.places {
+.directions {
 	min-height: 80%;
 	margin: 10px 0px 0px 10px;
 }
 
-.place {
+.direction {
 	background-color: #60a3bc;
 	padding: 10px;
 }

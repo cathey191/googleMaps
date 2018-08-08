@@ -33,10 +33,25 @@ $(document).ready(function() {
 		});
 	}
 
+	function getLocations() {
+		$.ajax({
+			url: 'data/locations.json',
+			dataType: 'json',
+			type: 'GET',
+			success: function(data) {
+				calcRoute(data);
+			},
+			error: function(error) {
+				console.log('Error');
+				console.log(error);
+			}
+		});
+	}
+
 	function initMap() {
 		directionDisplay = new google.maps.DirectionsRenderer();
 
-		var wellington = new google.maps.LatLng(-41.28646, 174.776236);
+		var wellington = new google.maps.LatLng(48.856614, 2.352222);
 
 		var myOptions = {
 			zoom: 6,
@@ -47,20 +62,21 @@ $(document).ready(function() {
 		map = new google.maps.Map(document.getElementById('map'), myOptions);
 
 		directionDisplay.setMap(map);
-		calcRoute();
+		getLocations();
 	}
 
-	function calcRoute() {
+	function calcRoute(data) {
+		var locations = data;
 		var waypts = [];
 
-		stop = new google.maps.LatLng(-38.685692, 176.07021);
+		stop = new google.maps.LatLng(locations[2].lat, locations[2].long);
 		waypts.push({
 			location: stop,
 			stopover: true
 		});
 
-		start = new google.maps.LatLng(-41.28646, 174.776236);
-		end = new google.maps.LatLng(-36.84846, 174.763332);
+		start = new google.maps.LatLng(locations[1].lat, locations[1].long);
+		end = new google.maps.LatLng(locations[0].lat, locations[0].long);
 
 		var request = {
 			origin: start,
@@ -77,8 +93,6 @@ $(document).ready(function() {
 			}
 		});
 	}
-
-	function findMe() {}
 
 	// close of doc
 });

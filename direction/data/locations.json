@@ -1,0 +1,17 @@
+[
+	{
+		"place_name": "Paris",
+		"lat": 48.856614,
+		"long": 2.352222
+	},
+	{
+		"place_name": "French Riviera",
+		"lat": 43.254773,
+		"long": 6.637858
+	},
+	{
+		"place_name": "Loire Valley",
+		"lat": 47.55324,
+		"long": 1.010529
+	}
+]

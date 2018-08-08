@@ -74,7 +74,6 @@ $(document).ready(function() {
 			},
 			title: data.place_name,
 			dataID: data.id,
-			dataType: data.place_type,
 			map: map
 		});
 
@@ -134,15 +133,7 @@ $(document).ready(function() {
 
 	function filter(e) {
 		event.preventDefault();
-		var inputData = $('form').serializeArray();
-
-		for (var i = 0; i < inputData.length; i++) {
-			for (var j = 0; j < markersArray.length; j++) {
-				if (inputData[i].value === markersArray[j].dataType) {
-					console.log('pass');
-				}
-			}
-		}
+		console.dir(e.target);
 	}
 
 	// close of doc

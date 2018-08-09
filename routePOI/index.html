@@ -11,14 +11,24 @@
 
 		<div class="content">
 			<div class="results">
-				<form class="filters" method="post" id="filters">
-					<label for="type"></label>
-					<input type="checkbox" name="type" value="Animal"> Animal<br>
-					<input type="checkbox" name="type" value="Beach"> Beach<br>
-					<input type="checkbox" name="type" value="Movies"> Movies<br>
-					<input type="checkbox" name="type" value="Walks"> Walks<br>
-					<input type="submit" value="Submit" id="submit">
-				</form>
+				<div class="filters">
+					<form class="typeOf" method="post" id="filters">
+						<label for="type"></label>
+						<input type="checkbox" name="type" value="Animal"> Animal<br>
+						<input type="checkbox" name="type" value="Beach"> Beach<br>
+						<input type="checkbox" name="type" value="Movies"> Movies<br>
+						<input type="checkbox" name="type" value="Walks"> Walks<br>
+						<input type="submit" value="Submit" id="submit">
+					</form>
+					<form class="travelMode" method="post" id="travelMode">
+						<label for="type">Mode of Travel: </label>
+						<select id="mode" name="type">
+      				<option value="DRIVING" selected>Driving</option>
+      				<option value="WALKING">Walking</option>
+      				<option value="BICYCLING">Bicycling</option>
+    				</select>
+					</form>
+				</div>
 				<div class="places" id="places"></div>
 			</div>
 			<div class="map" id="map"></div>

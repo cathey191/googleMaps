@@ -5,7 +5,12 @@ $(document).ready(function() {
 	var directionDisplay;
 	var directionService;
 	var infoBox;
+	var start;
+	var end;
 	document.querySelector('#submit').addEventListener('click', filter, false);
+	document
+		.querySelector('#travelMode')
+		.addEventListener('change', changeTravMode, false);
 
 	$.ajax({
 		url: 'config.json',
@@ -27,6 +32,7 @@ $(document).ready(function() {
 			type: 'GET',
 			success: function() {
 				directionService = new google.maps.DirectionsService();
+				start = new google.maps.LatLng(-41.2792, 174.7803);
 				initMap();
 			},
 			error: function(error) {
@@ -146,7 +152,7 @@ $(document).ready(function() {
 
 	function filter(e) {
 		event.preventDefault();
-		var inputData = $('form').serializeArray();
+		var inputData = $('#filters').serializeArray();
 
 		for (var i = 0; i < markersArray.length; i++) {
 			markersArray[i].setMap(null);
@@ -164,11 +170,8 @@ $(document).ready(function() {
 	}
 
 	function calcRoute(location) {
-		console.log(location.position);
-
 		var locPos = location.getPosition();
 
-		start = new google.maps.LatLng(-41.2792, 174.7803);
 		end = location.position;
 
 		var request = {
@@ -178,9 +181,27 @@ $(document).ready(function() {
 		};
 
 		directionService.route(request, function(response, status) {
-			console.log(status);
 			if (status == google.maps.DirectionsStatus.OK) {
-				console.log('pass');
+				directionDisplay.setDirections(response);
+				var route = response.routes[0];
+			}
+		});
+	}
+
+	function changeTravMode() {
+		// directionService.setMap(null);
+
+		var mode = $('#travelMode').serializeArray()['0'].value;
+
+		var request = {
+			origin: start,
+			destination: end,
+			travelMode: google.maps.TravelMode[mode]
+		};
+
+		directionService.route(request, function(response, status) {
+			console.dir(status);
+			if (status == google.maps.DirectionsStatus.OK) {
 				directionDisplay.setDirections(response);
 				var route = response.routes[0];
 			}

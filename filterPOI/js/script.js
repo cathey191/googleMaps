@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var map;
 	var markersArray = [];
+	var dataArray = [];
 	var infoBox;
 	document.querySelector('#submit').addEventListener('click', filter, false);
 
@@ -53,6 +54,7 @@ $(document).ready(function() {
 				for (var i = 0; i < data.length; i++) {
 					createMarkers(data[i]);
 					listPlaces(data[i]);
+					dataArray.push(data[i]);
 				}
 
 				document.querySelector('#places');
@@ -135,10 +137,16 @@ $(document).ready(function() {
 		event.preventDefault();
 		var inputData = $('form').serializeArray();
 
+		for (var i = 0; i < markersArray.length; i++) {
+			markersArray[i].setMap(null);
+		}
+		markersArray = [];
+
 		for (var i = 0; i < inputData.length; i++) {
-			for (var j = 0; j < markersArray.length; j++) {
-				if (inputData[i].value === markersArray[j].dataType) {
+			for (var j = 0; j < dataArray.length; j++) {
+				if (inputData[i].value === dataArray[j].place_type) {
 					console.log('pass');
+					createMarkers(dataArray[j]);
 				}
 			}
 		}

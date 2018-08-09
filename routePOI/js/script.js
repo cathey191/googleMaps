@@ -163,6 +163,8 @@ $(document).ready(function() {
 
 	// filter markers
 	function filter(e) {
+		var placeDiv = document.querySelector('#places');
+
 		event.preventDefault();
 		var inputData = $('#filters').serializeArray();
 
@@ -171,10 +173,15 @@ $(document).ready(function() {
 		}
 		markersArray = [];
 
+		while (placeDiv.hasChildNodes()) {
+			placeDiv.removeChild(placeDiv.lastChild);
+		}
+
 		for (var i = 0; i < inputData.length; i++) {
 			for (var j = 0; j < dataArray.length; j++) {
 				if (inputData[i].value === dataArray[j].place_type) {
 					createMarkers(dataArray[j]);
+					listPlaces(dataArray[j]);
 				}
 			}
 		}

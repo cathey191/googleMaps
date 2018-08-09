@@ -7,6 +7,7 @@ $(document).ready(function() {
 	var infoBox;
 	var start;
 	var end;
+	var service;
 	document.querySelector('#submit').addEventListener('click', filter, false);
 	document
 		.querySelector('#travelMode')
@@ -29,7 +30,10 @@ $(document).ready(function() {
 	// Use key to get google api
 	function getMap(key) {
 		$.ajax({
-			url: 'https://maps.googleapis.com/maps/api/js?key=' + key,
+			url:
+				'https://maps.googleapis.com/maps/api/js?key=' +
+				key +
+				'&libraries=places',
 			dataType: 'jsonp',
 			type: 'GET',
 			success: function() {
@@ -131,6 +135,7 @@ $(document).ready(function() {
 			infoBox.setContent('<div><strong>' + marker.title + '</strong></div>');
 			infoBox.open(map, marker);
 			calcRoute(marker);
+			findPlaceInfo(marker);
 		});
 	}
 
@@ -151,6 +156,7 @@ $(document).ready(function() {
 				);
 				infoBox.open(map, markersArray[i]);
 				calcRoute(markersArray[i]);
+				findPlaceInfo(markersArray[i]);
 			}
 		}
 	}
@@ -168,7 +174,6 @@ $(document).ready(function() {
 		for (var i = 0; i < inputData.length; i++) {
 			for (var j = 0; j < dataArray.length; j++) {
 				if (inputData[i].value === dataArray[j].place_type) {
-					console.log('pass');
 					createMarkers(dataArray[j]);
 				}
 			}
@@ -211,6 +216,35 @@ $(document).ready(function() {
 				var route = response.routes[0];
 			}
 		});
+	}
+
+	// get info about places
+	function findPlaceInfo(marker) {
+		var request = {
+			query: marker.title + ' Wellington, New Zealand',
+			fields: [
+				'id',
+				'name',
+				'photos',
+				'formatted_address',
+				'rating',
+				'opening_hours'
+			]
+		};
+
+		service = new google.maps.places.PlacesService(map);
+		service.findPlaceFromQuery(request, getPlaces);
+	}
+
+	// info from places
+	function getPlaces(results, status) {
+		if (status == 'OK') {
+			for (var i = 0; i < results.length; i++) {
+				console.log(results[i]);
+			}
+		} else {
+			console.log('Something went wrong with getting places');
+		}
 	}
 
 	// close of doc

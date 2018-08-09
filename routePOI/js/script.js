@@ -12,6 +12,7 @@ $(document).ready(function() {
 		.querySelector('#travelMode')
 		.addEventListener('change', changeTravMode, false);
 
+	// get key
 	$.ajax({
 		url: 'config.json',
 		dataType: 'json',
@@ -25,6 +26,7 @@ $(document).ready(function() {
 		}
 	});
 
+	// Use key to get google api
 	function getMap(key) {
 		$.ajax({
 			url: 'https://maps.googleapis.com/maps/api/js?key=' + key,
@@ -42,6 +44,7 @@ $(document).ready(function() {
 		});
 	}
 
+	// create map
 	function initMap() {
 		directionDisplay = new google.maps.DirectionsRenderer({
 			suppressMarkers: true
@@ -60,6 +63,7 @@ $(document).ready(function() {
 		getMarkers();
 	}
 
+	// get marker data
 	function getMarkers() {
 		$.ajax({
 			url: 'data/poi.json',
@@ -82,6 +86,7 @@ $(document).ready(function() {
 		});
 	}
 
+	// create markers
 	function createMarkers(data) {
 		var marker = new google.maps.Marker({
 			position: {
@@ -99,6 +104,7 @@ $(document).ready(function() {
 		markersArray.push(marker);
 	}
 
+	// list places in dom
 	function listPlaces(data) {
 		var newPlace = '<div class="place" data-id=' + data.id + '>';
 		newPlace += '<h3>' + data.place_name + '</h3>';
@@ -109,6 +115,7 @@ $(document).ready(function() {
 		$('#places').append(newPlace);
 	}
 
+	// display price of venue
 	function checkPrice(data) {
 		if (data.cost === false) {
 			return 'Free';
@@ -117,17 +124,17 @@ $(document).ready(function() {
 		}
 	}
 
+	// event listener for markers
 	function markerListner(marker) {
 		infoBox = new google.maps.InfoWindow();
 		google.maps.event.addListener(marker, 'click', function() {
 			infoBox.setContent('<div><strong>' + marker.title + '</strong></div>');
 			infoBox.open(map, marker);
-			// map.panTo(marker.position);
-			// map.setZoom(15);
 			calcRoute(marker);
 		});
 	}
 
+	// event listener for list items
 	function placeListner(e) {
 		if (typeof e.target.parentElement.dataset.id === 'string') {
 			var id = e.target.parentElement.dataset.id;
@@ -143,13 +150,12 @@ $(document).ready(function() {
 					'<div><strong>' + markersArray[i].title + '</strong></div>'
 				);
 				infoBox.open(map, markersArray[i]);
-				// map.panTo(markersArray[i].position);
-				// map.setZoom(15);
 				calcRoute(markersArray[i]);
 			}
 		}
 	}
 
+	// filter markers
 	function filter(e) {
 		event.preventDefault();
 		var inputData = $('#filters').serializeArray();
@@ -169,6 +175,7 @@ $(document).ready(function() {
 		}
 	}
 
+	// calculate route
 	function calcRoute(location) {
 		var locPos = location.getPosition();
 
@@ -188,9 +195,8 @@ $(document).ready(function() {
 		});
 	}
 
+	// change travel mode
 	function changeTravMode() {
-		// directionService.setMap(null);
-
 		var mode = $('#travelMode').serializeArray()['0'].value;
 
 		var request = {
@@ -200,7 +206,6 @@ $(document).ready(function() {
 		};
 
 		directionService.route(request, function(response, status) {
-			console.dir(status);
 			if (status == google.maps.DirectionsStatus.OK) {
 				directionDisplay.setDirections(response);
 				var route = response.routes[0];

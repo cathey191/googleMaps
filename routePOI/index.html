@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Route to Points of Interest</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+
+		<h1>Get Directions to Top Ten Places</h1>
+
+		<div class="content">
+			<div class="results">
+				<form class="filters" method="post" id="filters">
+					<label for="type"></label>
+					<input type="checkbox" name="type" value="Animal"> Animal<br>
+					<input type="checkbox" name="type" value="Beach"> Beach<br>
+					<input type="checkbox" name="type" value="Movies"> Movies<br>
+					<input type="checkbox" name="type" value="Walks"> Walks<br>
+					<input type="submit" value="Submit" id="submit">
+				</form>
+				<div class="places" id="places"></div>
+			</div>
+			<div class="map" id="map"></div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+	</body>
+</html>
